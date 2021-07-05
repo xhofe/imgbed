@@ -1,6 +1,10 @@
 import { ElMessage } from 'element-plus'
 
-export const copyToClip = (content: string) => {
+export const copyToClip = (content: string|undefined) => {
+    if(!content){
+        ElMessage.error('复制失败')
+        return
+    }
     const aux = document.createElement("textarea");
     // aux.setAttribute("value", content); 
     aux.value = content
