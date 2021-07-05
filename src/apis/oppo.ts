@@ -6,7 +6,7 @@ const Oppo: ImgApi = {
     url: 'https://api.open.oppomobile.com/api/utility/upload',
     field_name: 'file',
     additional_data: {type:'feedback'},
-    resp_type: 'text',
+    resp_type: 'json',
     url_field: ['data','url'],
     code_field: ['errno'],
     success_code: 0,
