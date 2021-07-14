@@ -38,8 +38,8 @@ const upload = async (api: ImgApi, file: File): Promise<Resp> => {
                     if (code != api.success_code) {
                         return { img_url: '', err_msg: '上传失败' }
                     }
-                    return { img_url: getField(res, api.url_field), err_msg: '' }
                 }
+                return { img_url: getField(res, api.url_field), err_msg: '' }
             }
             case 'text': {
                 const res = await resp.text()
