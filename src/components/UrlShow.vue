@@ -1,5 +1,5 @@
 <template>
-  <el-tabs type="border-card" v-model="active">
+  <el-tabs v-model="active">
     <el-tab-pane label="URL" name="first">
       <el-input v-model="url">
         <template #suffix>

@@ -96,31 +96,40 @@ export default defineComponent({
 </script>
 
 <style>
+@media screen and (max-width: 600px) {
+  .el-message {
+    min-width: 80% !important;
+  }
+}
 .el-main {
   display: flex !important;
   flex-direction: column;
   align-items: center;
   padding: 0 !important;
 }
-.main{
+.main {
   width: min(844px, 88vw);
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }
 #radios {
   --mx: 2vw;
-  margin-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 5px;
   justify-items: start;
 }
-#url-show {
-  margin-top: 5px;
+.el-upload{
+  margin: 10px 0;
 }
-.el-upload-dragger{
-  width: min(80vw,360px) !important;
+.el-upload-dragger {
+  width: min(80vw, 360px) !important;
+}
+.el-tabs {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }
 </style>
