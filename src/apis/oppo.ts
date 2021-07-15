@@ -1,6 +1,6 @@
 import ImgApi from "../img_api";
 
-const Oppo: ImgApi = {
+const api: ImgApi = {
     name: 'OPPO',
     transit: false,
     url: 'https://api.open.oppomobile.com/api/utility/upload',
@@ -14,4 +14,4 @@ const Oppo: ImgApi = {
     extensions: [],
 }
 
-export default Oppo
+export default api

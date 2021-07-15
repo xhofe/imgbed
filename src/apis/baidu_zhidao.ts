@@ -1,6 +1,6 @@
 import ImgApi from "../img_api";
 
-const BaiduZhidao: ImgApi = {
+const api: ImgApi = {
     name: '百度知道',
     transit: true,
     url: 'https://zhidao.baidu.com/submit/ajax/',
@@ -14,4 +14,4 @@ const BaiduZhidao: ImgApi = {
     extensions: [],
 }
 
-export default BaiduZhidao
+export default api

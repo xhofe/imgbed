@@ -1,11 +1,10 @@
 import ImgApi from "../img_api";
 
-const sogou:ImgApi = {
+const api:ImgApi = {
     name: '搜狗',
     transit: true,
     url: 'https://pic.sogou.com/pic/upload_pic.jsp',
     field_name: 'upload',
-    additional_data: {},
     resp_type: 'text',
     url_field: [],
     code_field: [],
@@ -14,4 +13,4 @@ const sogou:ImgApi = {
     extensions: [],
 }
 
-export default sogou
+export default api

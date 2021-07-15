@@ -1,11 +1,10 @@
 import ImgApi from "../img_api";
 
-const BaiduWenku: ImgApi = {
+const api: ImgApi = {
     name: '百度文库',
     transit: true,
     url: 'https://wenku.baidu.com/user/api/editorimg',
     field_name: 'file',
-    additional_data: {},
     resp_type: 'json',
     url_field: ['link'],
     code_field: [],
@@ -14,4 +13,4 @@ const BaiduWenku: ImgApi = {
     extensions: [],
 }
 
-export default BaiduWenku
+export default api

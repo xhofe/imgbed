@@ -1,13 +1,13 @@
 import ImgApi from "../img_api";
 
 const api: ImgApi = {
-    name: '腾讯',
+    name: '猫眼电影',
     transit: true,
-    url: 'https://om.qq.com/image/orginalupload',
-    field_name: 'Filedata',
+    url: 'https://maoyan.com/ajax/proxy/admin/mmdb/photos/upload.json',
+    field_name: 'file',
     resp_type: 'json',
-    url_field: ['data', 'url'],
-    code_field: ['response', 'code'],
+    url_field: ['data', 'olink'],
+    code_field: [],
     success_code: 0,
     max_size: 0,
     extensions: [],

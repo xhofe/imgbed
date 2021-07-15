@@ -8,6 +8,10 @@ interface Resp {
     err_msg: string;
 }
 
+const http2https = (text:string):string=>{
+    return text.replace('http://','https://')
+}
+
 const getField = (obj: any, field: string[]) => {
     let res = obj;
     for (const key of field) {
@@ -19,8 +23,10 @@ const getField = (obj: any, field: string[]) => {
 const upload = async (api: ImgApi, file: File): Promise<Resp> => {
     let data = new FormData()
     data.append(api.field_name, file)
-    for (const key in api.additional_data) {
-        data.append(key, api.additional_data[key])
+    if(api.additional_data){
+        for (const key in api.additional_data) {
+            data.append(key, api.additional_data[key])
+        }
     }
     let url = api.url
     if(api.transit){
@@ -30,9 +36,11 @@ const upload = async (api: ImgApi, file: File): Promise<Resp> => {
         NProgress.start()
         const resp = await fetch(url, {
             method: 'POST',
-            body: data
+            body: data,
+            headers: api.headers?api.headers:{}
         })
         NProgress.done()
+        let res_text = ''
         switch (api.resp_type) {
             case 'json': {
                 const res = await resp.json()
@@ -42,13 +50,21 @@ const upload = async (api: ImgApi, file: File): Promise<Resp> => {
                         return { img_url: '', err_msg: '上传失败' }
                     }
                 }
-                return { img_url: getField(res, api.url_field), err_msg: '' }
+                res_text = getField(res, api.url_field)
+                break
             }
             case 'text': {
-                const res = await resp.text()
-                return { img_url: res, err_msg: res?'':'上传失败' }
+                res_text = await resp.text()
             }
         }
+        if(!res_text){
+            return { img_url: '', err_msg: '上传失败' }
+        }
+        if(api.final_handler){
+            res_text = api.final_handler(res_text)
+        }
+        res_text = http2https(res_text)
+        return { img_url: res_text, err_msg: res_text?'':'上传失败' }
     }catch(e) {
         NProgress.done()
         console.log('err',e)
