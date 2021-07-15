@@ -95,11 +95,12 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 .el-main {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
+  padding: 0 !important;
 }
 .main{
   width: min(844px, 88vw);
@@ -118,5 +119,8 @@ export default defineComponent({
 }
 #url-show {
   margin-top: 5px;
+}
+.el-upload-dragger{
+  width: min(80vw,360px) !important;
 }
 </style>
