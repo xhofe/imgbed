@@ -3,7 +3,7 @@ import ImgApi from "../img_api";
 const api:ImgApi = {
     name: '搜狐',
     transit: false,
-    url: 'http://changyan.sohu.com/api/2/comment/attachment',
+    url: 'https://changyan.sohu.com/api/2/comment/attachment',
     field_name: 'file',
     resp_type: 'text',
     url_field: [''],
