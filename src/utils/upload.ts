@@ -1,4 +1,5 @@
 import ImgApi from "../img_api";
+import NProgress from 'nprogress'
 
 const transit_api = 'https://api-img.xhofe.workers.dev/'
 
@@ -26,10 +27,12 @@ const upload = async (api: ImgApi, file: File): Promise<Resp> => {
         url = `${transit_api}${url}`
     }
     try{
+        NProgress.start()
         const resp = await fetch(url, {
             method: 'POST',
             body: data
         })
+        NProgress.done()
         switch (api.resp_type) {
             case 'json': {
                 const res = await resp.json()
@@ -47,6 +50,7 @@ const upload = async (api: ImgApi, file: File): Promise<Resp> => {
             }
         }
     }catch(e) {
+        NProgress.done()
         console.log('err',e)
         return {img_url: "", err_msg: e.message || '上传失败'}
     }

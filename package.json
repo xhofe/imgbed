@@ -7,9 +7,11 @@
   },
   "dependencies": {
     "element-plus": "^1.0.2-beta.54",
+    "nprogress": "^0.2.0",
     "vue": "^3.0.5"
   },
   "devDependencies": {
+    "@types/nprogress": "^0.2.0",
     "@vercel/node": "^1.11.1",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vue/compiler-sfc": "^3.0.5",
