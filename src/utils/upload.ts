@@ -12,10 +12,11 @@ const http2https = (text:string):string=>{
     return text.replace('http://','https://')
 }
 
-const getField = (obj: any, field: string[]) => {
-    let res = obj;
+const getField = (obj: any, field: (string|number)[]) => {
+    let res = obj
     for (const key of field) {
         res = res[key]
+        console.log(res)
     }
     return res
 }

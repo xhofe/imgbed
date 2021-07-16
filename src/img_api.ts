@@ -10,7 +10,7 @@ interface ImgApi {
     headers?: Data;
     additional_data?: Data;
     resp_type: 'text' | 'json';
-    url_field: string[];
+    url_field: (string|number)[];
     code_field: string[];
     success_code: string | number;
     max_size: number;
