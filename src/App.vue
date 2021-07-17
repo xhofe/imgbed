@@ -8,7 +8,10 @@
         <div id="radios">
           <div class="radio" v-for="api_option in api_options" :key="api_option.path">
             <el-radio :label="api_option.path" v-model="choose_api">
-              <el-tag :type="api_option.api.transit ? 'danger' : ''">{{
+              <el-tag 
+                :type="api_option.api.transit ? 'danger' : 'success'"
+                effect="plain"
+              >{{
                 api_option.api.name
               }}</el-tag>
             </el-radio>
@@ -60,7 +63,7 @@ export default defineComponent({
     const choose_api = ref("");
     const url = ref("");
     const name = ref("");
-    const uploader = ref(null);
+    const uploader = ref<any>(null);
     for (const path in apis) {
       const api = apis[path].default as ImgApi;
       api_options.value.push({ path: path, api:api });
@@ -84,6 +87,7 @@ export default defineComponent({
         ElMessage.warning("请先选择一个接口");
         return;
       }
+      uploader.value!.clearFiles();
     }
     return {
       api_options,
@@ -134,5 +138,8 @@ export default defineComponent({
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+}
+.el-tag{
+  min-width: 74px;
 }
 </style>
