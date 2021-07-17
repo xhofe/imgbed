@@ -6,17 +6,17 @@ import { ElIcon, ElContainer, ElMain, ElUpload, ElHeader, ElSelect, ElOption, El
 import 'nprogress/nprogress.css'
 
 const components = [
-    ElIcon, ElContainer, ElMain, ElHeader, 
-    ElUpload, ElRadio,
-    ElTabs, ElTabPane,
-    ElInput,ElTag
+  ElIcon, ElContainer, ElMain, ElHeader,
+  ElUpload, ElRadio,
+  ElTabs, ElTabPane,
+  ElInput, ElTag
 ]
 // const plugins = []
 
 const app = createApp(App)
 
 components.forEach(component => {
-    app.component(component.name, component)
+  app.component(component.name, component)
 })
 
 // plugins.forEach(plugin => {

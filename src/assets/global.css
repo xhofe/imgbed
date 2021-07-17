@@ -1,12 +1,21 @@
-html, body{
-    margin: 0;
+html,body {
+  margin: 0;
+}
+
+html {
+  height               : 100%;
+  background           : url(https://api.xhofe.top/img/api/);
+  background-size      : cover;
+  background-repeat    : no-repeat;
+  background-position  : center;
+  background-attachment: fixed;
 }
 
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin: 0;
+  font-family            : Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align             : center;
+  color                  : #2c3e50;
+  margin                 : 0;
 }
