@@ -37,6 +37,9 @@
         ></url-show>
       </div>
     </el-main>
+    <div class="footer">
+      <el-link href="https://github.com/Xhofe" type="success" target="_blank">Github</el-link>
+    </div>
   </el-container>
 </template>
 
@@ -113,6 +116,7 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   padding: 0 !important;
+  min-height: calc(95vh - 60px);
 }
 .main {
   width: min(844px, 88vw);
