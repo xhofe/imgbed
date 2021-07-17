@@ -56,7 +56,7 @@ export default defineComponent({
   setup() {
     const apis = import.meta.globEager("./apis/*.ts");
     const options = ref<Option[]>([]);
-    const value = ref("./apis/oppo.ts");
+    const value = ref("");
     const url = ref("");
     const name = ref("");
     const uploader = ref(null);
@@ -66,7 +66,7 @@ export default defineComponent({
     }
     const httpRequest = (param: any) => {
       if (!value.value) {
-        ElMessage.warning("请先选择一个图床");
+        ElMessage.warning("请先选择一个接口");
         param.onError();
         return;
       }
