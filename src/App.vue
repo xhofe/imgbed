@@ -6,10 +6,10 @@
     <el-main>
       <div class="main">
         <div id="radios">
-          <div class="radio" v-for="option in options" :key="option.value">
-            <el-radio :label="option.value" v-model="value">
-              <el-tag :type="option.cors ? 'danger' : ''">{{
-                option.label
+          <div class="radio" v-for="api_option in api_options" :key="api_option.path">
+            <el-radio :label="api_option.path" v-model="choose_api">
+              <el-tag :type="api_option.api.transit ? 'danger' : ''">{{
+                api_option.api.name
               }}</el-tag>
             </el-radio>
           </div>
@@ -20,6 +20,8 @@
           :http-request="httpRequest"
           ref="uploader"
           :auto-upload="true"
+          :disabled="choose_api==''"
+          @click="clickUpload"
         >
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -43,9 +45,8 @@ import upload from "./utils/upload";
 import UrlShow from "./components/UrlShow.vue";
 
 interface Option {
-  value: string;
-  label: string;
-  cors: boolean;
+  path: string;
+  api: ImgApi;
 }
 
 export default defineComponent({
@@ -55,23 +56,18 @@ export default defineComponent({
   },
   setup() {
     const apis = import.meta.globEager("./apis/*.ts");
-    const options = ref<Option[]>([]);
-    const value = ref("");
+    const api_options = ref<Option[]>([]);
+    const choose_api = ref("");
     const url = ref("");
     const name = ref("");
     const uploader = ref(null);
     for (const path in apis) {
       const api = apis[path].default as ImgApi;
-      options.value.push({ value: path, label: api.name, cors: api.transit });
+      api_options.value.push({ path: path, api:api });
     }
     const httpRequest = (param: any) => {
-      if (!value.value) {
-        ElMessage.warning("请先选择一个接口");
-        param.onError();
-        return;
-      }
       const file = param.file;
-      upload(apis[value.value].default as ImgApi, file).then((res) => {
+      upload(apis[choose_api.value].default as ImgApi, file).then((res) => {
         console.log(res);
         if (!res.img_url || res.err_msg) {
           ElMessage.error(res.err_msg);
@@ -83,13 +79,20 @@ export default defineComponent({
         name.value = file.name;
       });
     };
+    const clickUpload = ()=>{
+      if (!choose_api.value) {
+        ElMessage.warning("请先选择一个接口");
+        return;
+      }
+    }
     return {
-      options,
-      value,
+      api_options,
+      choose_api,
       url,
       name,
       httpRequest,
       uploader,
+      clickUpload,
     };
   },
 });
