@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './AppXHR.vue'
+// import App from './AppFetch.vue'
 import 'element-plus/packages/theme-chalk/src/base.scss'
 import './assets/global.css'
 import { ElIcon, ElContainer, ElMain, ElUpload, ElHeader, ElSelect, ElOption, ElRadio, ElTabs, ElTabPane, ElInput, ElTag, ElFooter, ElLink } from 'element-plus'
+import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 const components = [
@@ -12,6 +14,8 @@ const components = [
   ElInput, ElTag, ElLink,
 ]
 // const plugins = []
+
+NProgress.configure({ trickle: false });
 
 const app = createApp(App)
 

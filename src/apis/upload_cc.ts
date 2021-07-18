@@ -1,7 +1,7 @@
 import ImgApi from "../img_api";
 
 const api: ImgApi = {
-  name: 'Upload.cc',
+  name: 'upload.cc',
   transit: true,
   url: 'https://upload.cc/image_upload',
   field_name: 'uploaded_file[]',

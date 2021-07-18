@@ -53,7 +53,7 @@
 import { defineComponent, onBeforeUnmount, onMounted, ref } from "vue";
 import ImgApi from "./img_api";
 import { ElMessage } from "element-plus";
-import upload from "./utils/upload";
+import upload from "./utils/upload_fetch";
 import UrlShow from "./components/UrlShow.vue";
 
 interface Option {
