@@ -13,9 +13,13 @@ const upload = async (api: ImgApi, file: File): Promise<Resp> => {
       NProgress.start()
       const xhr = new XMLHttpRequest()
       xhr.upload.addEventListener('progress', evt => {
-        const percentageComplete = evt.loaded / evt.total
-        console.log('percentageComplete',percentageComplete)
-        NProgress.set(percentageComplete)
+        const complete = evt.loaded / evt.total
+        console.log(complete)
+        if (complete == 1) {
+          console.log('upload complete')
+        } else {
+          NProgress.set(complete)
+        }
       })
       xhr.addEventListener('load', () => {
         let res = ''
@@ -32,7 +36,7 @@ const upload = async (api: ImgApi, file: File): Promise<Resp> => {
       })
       xhr.addEventListener('loadend', (evt) => {
         NProgress.done()
-        resolve(handleRes(api,''))
+        resolve(handleRes(api, ''))
       })
       xhr.open('POST', url)
       if (api.headers) {
