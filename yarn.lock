@@ -321,6 +321,11 @@ convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
+crypto-js@^3.1.9-1:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
+  integrity sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q==
+
 csstype@^3.0.2:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
@@ -519,6 +524,13 @@ semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
+
+sha1-file-web@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/sha1-file-web/-/sha1-file-web-1.0.2.tgz#7a47a08c2d02df762bdba4f4bb854d71ece00ac5"
+  integrity sha512-TiJkEMIeZJLc2jc9Mf5jLZASm4sUhq9hI27r5uOAmGy3xOCJwjIqPWD/d8Tx5OtB59mam5XVY/RSC0lbPzqX6A==
+  dependencies:
+    crypto-js "^3.1.9-1"
 
 source-map-js@^0.6.2:
   version "0.6.2"
