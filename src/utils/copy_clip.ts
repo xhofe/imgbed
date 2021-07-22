@@ -1,4 +1,4 @@
-export const copyToClip = (content: string | undefined) => {
+const copyToClip = (content: string | undefined) => {
   if (!content) {
     console.log('复制失败')
     return
@@ -12,3 +12,5 @@ export const copyToClip = (content: string | undefined) => {
   document.body.removeChild(aux)
   console.log('复制成功')
 }
+
+export default copyToClip

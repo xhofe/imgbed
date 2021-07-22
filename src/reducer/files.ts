@@ -7,14 +7,20 @@ export enum ACTION_TYPE {
   FOCUS = "focus",
   URL = "url",
   PROGRESS = "progress",
+  CLEAR = "clear",
+}
+
+export enum FILE_STATUS {
+  PREPARE = "prepare",
+  UPLOADING = "uploading",
+  UPLOADED = "uploaded",
 }
 
 export interface IFile {
   file: File;
   focus: boolean;
   url: string;
-  uploaded: boolean;
-  fail: boolean;
+  status: FILE_STATUS;
   progress: number;
   hash: string;
 }
@@ -43,8 +49,7 @@ export default function reducer(
         file,
         focus: false,
         url: "",
-        uploaded: false,
-        fail: false,
+        status: FILE_STATUS.PREPARE,
         progress: 0,
         hash,
       };
@@ -52,6 +57,8 @@ export default function reducer(
     }
     case ACTION_TYPE.DEL:
       return state.filter((file) => file.hash !== payload);
+    case ACTION_TYPE.CLEAR:
+      return [];
     case ACTION_TYPE.EDIT:{
       const file = payload as IFile;
       return state.map((f) => {

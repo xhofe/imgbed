@@ -17,14 +17,17 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
     fileInput.click();
   };
 
-  const hanldAddFiles = async (files: FileList) => {
+  const hanldAddFiles = (files: FileList | File[]) => {
     for (const file of files) {
       if (file.type.indexOf("image") !== -1) {
-        const hash = await sha1(file);
-        dispatch({
-          type: ACTION_TYPE.ADD,
-          payload: { file, hash },
+        // const hash = await sha1(file);
+        sha1(file).then((hash: string) => {
+          dispatch({
+            type: ACTION_TYPE.ADD,
+            payload: { file, hash },
+          });
         });
+        console.log(file);
       }
     }
   };
@@ -42,10 +45,11 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
   }, []);
 
   const fileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
+    const fileList = event.target.files;
+    if (fileList) {
+      const files = Array.from(fileList);
       hanldAddFiles(files);
-      setTimeout(()=>{event.target.value = "";},1000)
+      event.target.value = "";
     }
   };
 
@@ -70,6 +74,9 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
           id="upload-input-file"
           onChange={fileChange}
         ></input>
+      </div>
+      <div className="upload-actions">
+        <i className="iconfont icon-shanchu1" onClick={()=>dispatch({type: ACTION_TYPE.CLEAR, payload: null})}></i>
       </div>
       <div
         className={["upload-show", drag ? "upload-show-drag" : ""].join(" ")}

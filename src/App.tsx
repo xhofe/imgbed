@@ -1,6 +1,7 @@
 import React, { createContext } from 'react'
 import './App.css'
 import Upload from './components/upload/Upload'
+import UrlShow from './components/url-show/UrlShow'
 import fileReducer, { IAction, IState } from './reducer/files'
 
 export interface IFilesContext{
@@ -23,6 +24,9 @@ function App() {
           </div>
           <div className="App-uploader">
             <Upload/>
+          </div>
+          <div className="App-url-show">
+            <UrlShow/>
           </div>
         </FilesContext.Provider>
       </div>

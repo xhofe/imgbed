@@ -8,7 +8,7 @@
 
 .Main{
   background-color: rgba(255, 255, 255, 0.8);
-  width: min(1280px, 88vw);
+  width: min(1280px, 88%);
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
@@ -17,6 +17,17 @@
   align-items: center;
 }
 
+.App-header h2{
+  margin: 0;
+}
+
 .App-uploader {
   width: 100%;
+  margin: 5px 0;
+}
+
+.App-url-show{
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }

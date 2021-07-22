@@ -8,6 +8,10 @@
   justify-content: center;
 }
 
+.upload-item-focus{
+  box-shadow:0px 0px 10px #000;
+}
+
 .upload-item-img{
   width: 100%;
   height: 80%;
@@ -47,4 +51,22 @@
   bottom: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.upload-item-progress{
+  --progress-height: 4px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: start;
+  height: var(--progress-height);
+  background-color: lightcyan;
+  border-radius: var(--progress-height) / 2;
+}
+
+.upload-item-progress *{
+  height: var(--progress-height);
+  line-height: var(--progress-height);
+  background-color: cyan;
+  border-radius: var(--progress-height) / 2;
 }
