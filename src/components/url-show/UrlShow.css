@@ -34,6 +34,10 @@
   position: relative;
 }
 
+.url-show-input-container-focus {
+  box-shadow:0px 0px 10px #000;
+}
+
 .url-show-input {
   -webkit-appearance: none;
   background-color  : #fff;

@@ -64,6 +64,15 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
     };
   };
 
+  const focus = (hash: string) => {
+    return (focus: boolean) => {
+      dispatch({
+        type: ACTION_TYPE.FOCUS,
+        payload: { hash: hash, focus: focus },
+      });
+    }
+  }
+
   return (
     <div className="upload">
       <div className="upload-input">
@@ -97,7 +106,7 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
       >
         {state.map((ifile, index) => (
           <div key={ifile.hash} className="upload-show-item">
-            <UploadItem del={del(ifile.hash)} ifile={ifile}></UploadItem>
+            <UploadItem focus={focus(ifile.hash)} del={del(ifile.hash)} ifile={ifile}></UploadItem>
           </div>
         ))}
         <div className="upload-btn" onClick={clickUpload}>

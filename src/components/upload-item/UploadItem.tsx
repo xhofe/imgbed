@@ -1,19 +1,32 @@
-import * as React from 'react';
-import './UploadItem.css';
-import { IFile } from '../../reducer/files'
+import * as React from "react";
+import "./UploadItem.css";
+import { IFile } from "../../reducer/files";
 
 interface IUploadItemProps {
   ifile: IFile;
-  del: ()=>void;
+  del: () => void;
+  focus: (focus: boolean) => void;
 }
 
-const UploadItem: React.FunctionComponent<IUploadItemProps> = ({ifile,del}) => {
-  const imgRef = React.useRef<HTMLImageElement|null>(null);
+const UploadItem: React.FunctionComponent<IUploadItemProps> = ({
+  ifile,
+  del,
+  focus,
+}) => {
+  const imgRef = React.useRef<HTMLImageElement | null>(null);
   React.useEffect(() => {
     imgRef.current!.src = window.URL.createObjectURL(ifile.file);
   }, []);
   return (
-    <div className={`upload-item ${ifile.focus?"upload-item-focus":null}`}>
+    <div
+      onMouseOver={() => {
+        focus(true);
+      }}
+      onMouseOut={() => {
+        focus(false);
+      }}
+      className={`upload-item ${ifile.focus ? "upload-item-focus" : null}`}
+    >
       <div className="upload-item-img">
         <img ref={imgRef} src="" alt="" />
       </div>
@@ -21,7 +34,7 @@ const UploadItem: React.FunctionComponent<IUploadItemProps> = ({ifile,del}) => {
         <span>{ifile.file.name}</span>
       </div>
       <div className="upload-item-progress">
-        <div style={{width: `${ifile.progress}%`}}></div>
+        <div style={{ width: `${ifile.progress}%` }}></div>
       </div>
       <div className="upload-item-action">
         <span className="del" onClick={del}>

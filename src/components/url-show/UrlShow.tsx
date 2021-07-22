@@ -51,7 +51,11 @@ const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
       <div className="url-show-content">
         {state.map((ifile, index) => {
           return (
-            <div className="url-show-input-container">
+            <div
+              className={`url-show-input-container ${
+                ifile.focus ? "url-show-input-container-focus" : null
+              }`}
+            >
               <input
                 className="url-show-input"
                 value={getUrlShow(ifile, urlShowType)}
@@ -73,10 +77,12 @@ const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
               <i
                 onClick={() => {
                   copyToClip(getUrlShow(ifile, urlShowType));
-                  const cur = document.getElementById(ifile.hash)
-                  if(cur){
+                  const cur = document.getElementById(ifile.hash);
+                  if (cur) {
                     cur.className = "url-copy iconfont icon-success1";
-                    setTimeout(()=>{cur.className = "url-copy iconfont icon-copy";},2000)
+                    setTimeout(() => {
+                      cur.className = "url-copy iconfont icon-copy";
+                    }, 2000);
                   }
                 }}
                 className="url-copy iconfont icon-copy"
