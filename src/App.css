@@ -1,13 +1,71 @@
 .App {
+  height: 100%;
+  width: 100%;
+  --bgcolor:rgba(255, 255, 255, 0.8);
+  --ftColor: black;
+  --ft2Color: gray;
+  --headerHeight:52px;
+}
+
+.App-header {
+  position: fixed;
+  top: 0;
+  z-index: 245;
+  height: var(--headerHeight);
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bgcolor);
+  box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+}
+
+.App-header h2{
+  margin: 0;
+}
+
+.header-icons{
+  padding-top: 3px;
+}
+
+.header-icon{
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.App-aside{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: calc(100vh - 52px);
+  background-color: var(--bgcolor);
+  width: 0px;
+  transition:width 0.4s;
+  overflow: auto;
+}
+
+.aside-folder{
+  width: 300px;
+}
+
+.container-folder{
+  margin-left: 300px;
+}
+
+.Main-container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1em;
-  min-height: calc(95vh - 60px);
+  margin-top: 62px;
+  transition: margin-left 0.4s;
+  box-sizing: border-box;
+  height: calc(100vh - 62px);
 }
 
 .Main{
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--bgcolor);
   width: min(1280px, 88%);
   padding: 15px;
   border-radius: 10px;
@@ -15,10 +73,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.App-header h2{
-  margin: 0;
+  max-height: calc(100% - 10px);
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 .App-uploader {
