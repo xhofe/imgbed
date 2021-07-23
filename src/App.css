@@ -1,7 +1,8 @@
 .App {
   height: 100%;
   width: 100%;
-  --bgcolor:rgba(255, 255, 255, 0.8);
+  --bgColor:rgba(255, 255, 255, 0.8);
+  --bg2Color:#909399 ;
   --ftColor: black;
   --ft2Color: gray;
   --headerHeight:52px;
@@ -18,8 +19,8 @@
   padding: 0 20px;
   justify-content: space-between;
   align-items: center;
-  background: var(--bgcolor);
-  box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+  background: var(--bgColor);
+  box-shadow: 0 1px 6px 3px rgb(32 33 36 / 28%);
 }
 
 .App-header h2{
@@ -36,22 +37,31 @@
 }
 
 .App-aside{
+  z-index: 244;
   position: fixed;
-  left: 0;
+  left: -300px;
+  width: 300px;
   bottom: 0;
   height: calc(100vh - 52px);
-  background-color: var(--bgcolor);
-  width: 0px;
-  transition:width 0.4s;
+  background-color: var(--bgColor);
+  transition:left 0.4s;
   overflow: auto;
 }
 
 .aside-folder{
-  width: 300px;
+  left: 0;
 }
 
-.container-folder{
-  margin-left: 300px;
+@media only screen and (max-width: 500px) {
+  .container-folder{
+    filter: blur(5px);
+  }
+}
+
+@media only screen and (min-width: 501px) {
+  .container-folder{
+    margin-left: 300px;
+  }
 }
 
 .Main-container{
@@ -65,7 +75,7 @@
 }
 
 .Main{
-  background-color: var(--bgcolor);
+  background-color: var(--bgColor);
   width: min(1280px, 88%);
   padding: 15px;
   border-radius: 10px;

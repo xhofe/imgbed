@@ -1,6 +1,6 @@
 import * as React from "react";
 import sha1 from "sha1-file-web";
-import { FilesContext } from "../../App";
+import { AppContext } from "../../App";
 import { ACTION_TYPE } from "../../reducer/files";
 import UploadItem from "../upload-item/UploadItem";
 import "./Upload.css";
@@ -8,7 +8,7 @@ import "./Upload.css";
 interface IUploadProps {}
 
 const Upload: React.FunctionComponent<IUploadProps> = (props) => {
-  const { state, dispatch } = React.useContext(FilesContext);
+  const { state, dispatch } = React.useContext(AppContext);
   const clickUpload = (event: React.MouseEvent<HTMLInputElement>) => {
     event.preventDefault();
     const fileInput = document.querySelector(
@@ -70,8 +70,8 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
         type: ACTION_TYPE.FOCUS,
         payload: { hash: hash, focus: focus },
       });
-    }
-  }
+    };
+  };
 
   return (
     <div className="upload">
@@ -85,7 +85,10 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
         ></input>
       </div>
       <div className="upload-actions">
-        <i className="iconfont icon-shanchu1" onClick={()=>dispatch({type: ACTION_TYPE.CLEAR, payload: null})}></i>
+        <i
+          className="iconfont icon-shanchu1"
+          onClick={() => dispatch({ type: ACTION_TYPE.CLEAR, payload: null })}
+        ></i>
       </div>
       <div
         className={["upload-show", drag ? "upload-show-drag" : ""].join(" ")}
@@ -106,7 +109,11 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
       >
         {state.map((ifile, index) => (
           <div key={ifile.hash} className="upload-show-item">
-            <UploadItem focus={focus(ifile.hash)} del={del(ifile.hash)} ifile={ifile}></UploadItem>
+            <UploadItem
+              focus={focus(ifile.hash)}
+              del={del(ifile.hash)}
+              ifile={ifile}
+            ></UploadItem>
           </div>
         ))}
         <div className="upload-btn" onClick={clickUpload}>

@@ -16,6 +16,7 @@ interface ImgApi {
   max_size: number;
   extensions: string[];
   final_handler?: (text: string) => string;
+  local?: boolean;
 }
 
 export default ImgApi

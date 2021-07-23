@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./UrlShow.css";
 import copyToClip from "../../utils/copy_clip";
-import { FilesContext } from "../../App";
+import { AppContext } from "../../App";
 import { ACTION_TYPE, IFile } from "../../reducer/files";
 
 enum UrlShowType {
@@ -30,7 +30,7 @@ const getUrlShow = (ifile: IFile, type: UrlShowType) => {
 interface IUrlShowProps {}
 
 const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
-  const { state, dispatch } = React.useContext(FilesContext);
+  const { state, dispatch } = React.useContext(AppContext);
   const [urlShowType, setUrlShowType] = React.useState(UrlShowType.URL);
   return (
     <div className="url-show">
@@ -38,6 +38,7 @@ const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
         {Object.values(UrlShowType).map((type, index) => {
           return (
             <span
+              key={type}
               className={`url-show-type ${
                 urlShowType === type ? "url-show-type-focus" : null
               }`}
@@ -52,6 +53,7 @@ const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
         {state.map((ifile, index) => {
           return (
             <div
+              key={ifile.hash}
               className={`url-show-input-container ${
                 ifile.focus ? "url-show-input-container-focus" : null
               }`}
