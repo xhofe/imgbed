@@ -6,10 +6,16 @@
 }
 
 .url-show-types {
-  width      : 100%;
-  white-space: nowrap;
-  overflow-x : auto;
-  line-height: 30px;
+  width             : 100%;
+  white-space       : nowrap;
+  overflow-x        : auto;
+  line-height       : 30px;
+  -ms-overflow-style: none;
+  scrollbar-width   : none;
+}
+
+.url-show-types::-webkit-scrollbar {
+  display: none;
 }
 
 
@@ -30,13 +36,13 @@
   position: relative;
 }
 
-.url-show-input-container{
+.url-show-input-container {
   position: relative;
 }
 
 .url-show-input-container-focus {
-  box-shadow:0px 0px 10px #000;
-  z-index: 244;
+  box-shadow: 0px 0px 10px #000;
+  z-index   : 244;
 }
 
 .url-show-input {
@@ -63,5 +69,5 @@
   top     : 25%;
   right   : 10px;
   z-index : 2;
-  cursor: pointer;
+  cursor  : pointer;
 }

@@ -3,6 +3,7 @@ import "./UrlShow.css";
 import copyToClip from "../../utils/copy_clip";
 import { AppContext } from "../../App";
 import { ACTION_TYPE, FILE_STATUS, IFile } from "../../reducer/files";
+import { createMessage, MessageType } from "../message/message";
 
 enum UrlShowType {
   URL = "Url",
@@ -48,13 +49,30 @@ const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
             </span>
           );
         })}
+        <i
+          onClick={() => {
+            let content = "";
+            state.forEach((ifile) => {
+              if (ifile.status === FILE_STATUS.UPLOADED) {
+                content += `${getUrlShow(ifile, urlShowType)}\n`;
+              }
+            });
+            copyToClip(content);
+            createMessage()("复制成功", MessageType.Success);
+          }}
+          style={{ cursor: "pointer" }}
+          className="iconfont icon-copy"
+        ></i>
       </div>
       <div className="url-show-content">
         {state.map((ifile, index) => {
           return (
             <div
               key={ifile.hash}
-              style={{display: ifile.status==FILE_STATUS.UPLOADED? "block" : "none"}}
+              style={{
+                display:
+                  ifile.status == FILE_STATUS.UPLOADED ? "block" : "none",
+              }}
               className={`url-show-input-container ${
                 ifile.focus ? "url-show-input-container-focus" : null
               }`}
