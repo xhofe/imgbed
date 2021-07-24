@@ -65,6 +65,10 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
       upload(apiState.cur, file,progress(hash)).then(res => {
         if (!res.img_url || res.err_msg) {
           createMessage()(res.err_msg, MessageType.Error);
+          dispatch({
+            type:ACTION_TYPE.EDIT,
+            payload:{hash,status:FILE_STATUS.FAILED}
+          })
           return;
         }else{
           dispatch({
@@ -86,7 +90,7 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
     return () => {
       document.removeEventListener("paste", pasteListener);
     };
-  }, []);
+  }, [apiState.cur]);
 
   const fileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;

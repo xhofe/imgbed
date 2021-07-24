@@ -36,6 +36,17 @@
   padding-right: 10px;
 }
 
+.upload-item-status{
+  font-size: 14px;
+  height: 10%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: start;
+  padding-left: 10px;
+}
+
 .upload-item-action i{
   cursor: pointer;
   padding: 1px;

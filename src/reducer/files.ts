@@ -14,6 +14,7 @@ export enum FILE_STATUS {
   PREPARE = "prepare",
   UPLOADING = "uploading",
   UPLOADED = "uploaded",
+  FAILED = "failed",
 }
 
 export interface IFile {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./UploadItem.css";
-import { IFile } from "../../reducer/files";
+import { FILE_STATUS, IFile } from "../../reducer/files";
 
 interface IUploadItemProps {
   ifile: IFile;
@@ -40,6 +40,13 @@ const UploadItem: React.FunctionComponent<IUploadItemProps> = ({
         <span className="del" onClick={del}>
           <i className="iconfont icon-shanchu1"></i>
         </span>
+      </div>
+      <div className="upload-item-status">
+        <i className={`iconfont ${
+          ifile.status === FILE_STATUS.PREPARE ? "icon-tianjia" :
+          ifile.status ===FILE_STATUS.UPLOADING? "icon-uploading":
+          ifile.status === FILE_STATUS.UPLOADED ? "icon-Success" :"icon-error1"
+        }`}></i>
       </div>
     </div>
   );

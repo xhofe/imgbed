@@ -52,7 +52,6 @@ const Aside: React.FunctionComponent<IAsideProps> = (props) => {
                   : "success"
               }
               onClick={(e) => {
-                console.log((e.target as Element).tagName)
                 if ((e.target as Element).tagName === "SPAN") {
                   apiDispatch({
                     type: API_ACTION_TYPE.CHOOSE,
