@@ -17,7 +17,10 @@ const Aside: React.FunctionComponent<IAsideProps> = (props) => {
       var api: any;
       eval(`api = ${apiContent}`) as ImgApi;
       if (api && api.name) {
-        apiDispatch({ type: API_ACTION_TYPE.ADD, payload: {api,apiContent} });
+        apiDispatch({
+          type: API_ACTION_TYPE.ADD,
+          payload: { api, apiContent },
+        });
         // setApiContent("");
         // setShowAdd(false);
       } else {
@@ -48,11 +51,14 @@ const Aside: React.FunctionComponent<IAsideProps> = (props) => {
                   ? "danger"
                   : "success"
               }
-              onClick={() => {
-                apiDispatch({
-                  type: API_ACTION_TYPE.CHOOSE,
-                  payload: api,
-                });
+              onClick={(e) => {
+                console.log((e.target as Element).tagName)
+                if ((e.target as Element).tagName === "SPAN") {
+                  apiDispatch({
+                    type: API_ACTION_TYPE.CHOOSE,
+                    payload: api,
+                  });
+                }
               }}
               del={api.local ? delApi(api) : undefined}
             >
@@ -114,7 +120,9 @@ interface ImgApi {
             >
               关闭
             </button>
-            <button className="btn" onClick={addApi}>确定</button>
+            <button className="btn" onClick={addApi}>
+              确定
+            </button>
           </div>
         </div>
       </div>

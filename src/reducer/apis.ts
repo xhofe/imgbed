@@ -19,18 +19,18 @@ export interface APIAction {
   payload?: any;
 }
 
-export const EmptyApi: ImgApi = {
-  name: "",
-  url: "",
-  transit: false,
-  field_name: "",
-  resp_type: "text",
-  url_field: [],
-  code_field: [],
-  success_code: 0,
-  max_size: 0,
-  extensions: [],
-};
+// export const EmptyApi: ImgApi = {
+//   name: "",
+//   url: "",
+//   transit: false,
+//   field_name: "",
+//   resp_type: "text",
+//   url_field: [],
+//   code_field: [],
+//   success_code: 0,
+//   max_size: 0,
+//   extensions: [],
+// };
 
 export default function reducer(state: APIState, action: APIAction): APIState {
   const { type, payload } = action;
@@ -43,7 +43,7 @@ export default function reducer(state: APIState, action: APIAction): APIState {
     case API_ACTION_TYPE.ADD:
       const { api, apiContent } = payload;
       if (state.apis.find((item) => item.name === api.name)) {
-        createMessage()("API name already exists", MessageType.Error);
+        createMessage()("API name 已存在", MessageType.Error);
         return state;
       }
       createMessage()("API添加成功", MessageType.Success);
@@ -55,13 +55,12 @@ export default function reducer(state: APIState, action: APIAction): APIState {
     case API_ACTION_TYPE.DEL:
       localStorage.removeItem(`--${payload.name}`);
       if (state.cur && state.cur.name === payload.name) {
-        console.log(payload)
         localStorage.removeItem('cur');
       }
       return {
         ...state,
         cur:
-          state.cur && state.cur.name === payload.name ? EmptyApi : state.cur,
+          state.cur && state.cur.name === payload.name ? undefined : state.cur,
         apis: state.apis.filter((api) => api !== payload),
       };
     case API_ACTION_TYPE.CHOOSE:

@@ -5,8 +5,8 @@ export enum ACTION_TYPE {
   DEL = "delete",
   EDIT = "edit",
   FOCUS = "focus",
-  URL = "url",
-  PROGRESS = "progress",
+  // URL = "url",
+  // PROGRESS = "progress",
   CLEAR = "clear",
 }
 
@@ -60,10 +60,10 @@ export default function reducer(
     case ACTION_TYPE.CLEAR:
       return [];
     case ACTION_TYPE.EDIT:{
-      const file = payload as IFile;
+      const file = payload as any;
       return state.map((f) => {
         if (f.hash === file.hash) {
-          return file;
+          return {...f, ...file};
         }
         return f;
       });
@@ -80,30 +80,30 @@ export default function reducer(
         return file;
       });
     }
-    case ACTION_TYPE.URL: {
-      const { hash, url } = payload;
-      return state.map((file) => {
-        if (file.hash === hash) {
-          return {
-            ...file,
-            url,
-          };
-        }
-        return file;
-      });
-    }
-    case ACTION_TYPE.PROGRESS: {
-      const { hash, progress } = payload;
-      return state.map((file) => {
-        if (file.hash === hash) {
-          return {
-            ...file,
-            progress,
-          };
-        }
-        return file;
-      });
-    }
+    // case ACTION_TYPE.URL: {
+    //   const { hash, url } = payload;
+    //   return state.map((file) => {
+    //     if (file.hash === hash) {
+    //       return {
+    //         ...file,
+    //         url,
+    //       };
+    //     }
+    //     return file;
+    //   });
+    // }
+    // case ACTION_TYPE.PROGRESS: {
+    //   const { hash, progress } = payload;
+    //   return state.map((file) => {
+    //     if (file.hash === hash) {
+    //       return {
+    //         ...file,
+    //         progress,
+    //       };
+    //     }
+    //     return file;
+    //   });
+    // }
     default:
       return state;
   }

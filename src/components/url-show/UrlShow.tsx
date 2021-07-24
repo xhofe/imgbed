@@ -2,7 +2,7 @@ import * as React from "react";
 import "./UrlShow.css";
 import copyToClip from "../../utils/copy_clip";
 import { AppContext } from "../../App";
-import { ACTION_TYPE, IFile } from "../../reducer/files";
+import { ACTION_TYPE, FILE_STATUS, IFile } from "../../reducer/files";
 
 enum UrlShowType {
   URL = "Url",
@@ -54,6 +54,7 @@ const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
           return (
             <div
               key={ifile.hash}
+              style={{display: ifile.status==FILE_STATUS.UPLOADED? "block" : "none"}}
               className={`url-show-input-container ${
                 ifile.focus ? "url-show-input-container-focus" : null
               }`}
@@ -74,7 +75,6 @@ const UrlShow: React.FunctionComponent<IUrlShowProps> = (props) => {
                     payload: { hash: ifile.hash, focus: false },
                   });
                 }}
-                // style={{display: file.uploaded? "block" : "none"}}
               />
               <i
                 onClick={() => {

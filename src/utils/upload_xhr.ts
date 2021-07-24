@@ -11,9 +11,9 @@ const upload = async (api: ImgApi, file: File, progress:(text: number) => void):
     return new Promise<Resp>((resolve, reject) => {
       const xhr = new XMLHttpRequest()
       xhr.upload.addEventListener('progress', evt => {
-        const complete = evt.loaded / evt.total
+        const complete = evt.loaded / evt.total * 100
         console.log(complete)
-        if (complete == 1) {
+        if (complete == 100) {
           console.log('upload complete')
         } else {
           progress(complete)
@@ -33,7 +33,7 @@ const upload = async (api: ImgApi, file: File, progress:(text: number) => void):
         resolve(handleRes(api, res))
       })
       xhr.addEventListener('loadend', (evt) => {
-        progress(1)
+        progress(100)
         resolve(handleRes(api, ''))
       })
       xhr.open('POST', url)
