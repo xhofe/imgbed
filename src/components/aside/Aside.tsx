@@ -15,7 +15,7 @@ const Aside: React.FunctionComponent<IAsideProps> = (props) => {
   const addApi = () => {
     try {
       var api: any;
-      eval(`api = ${apiContent}`) as ImgApi;
+      eval(`api = ${apiContent}`);
       if (api && api.name) {
         apiDispatch({
           type: API_ACTION_TYPE.ADD,

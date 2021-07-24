@@ -102,13 +102,13 @@ export function apiInit(): APIState {
     if (key!.startsWith("--")) {
       try {
         eval(`api = ${localStorage.getItem(key!)}`);
-        if (api && api.name) {
+        // if (api && api.name) {
           api.local = true;
           if (curName && curName === api.name) {
             cur = api;
           }
           apis.push(api);
-        }
+        // }
       } catch (e) {
         console.log(e);
       }

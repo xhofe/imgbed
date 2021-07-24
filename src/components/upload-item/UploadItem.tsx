@@ -36,17 +36,17 @@ const UploadItem: React.FunctionComponent<IUploadItemProps> = ({
       <div className="upload-item-progress">
         <div style={{ width: `${ifile.progress}%` }}></div>
       </div>
-      <div className="upload-item-action">
-        <span className="del" onClick={del}>
-          <i className="iconfont icon-shanchu1"></i>
-        </span>
-      </div>
       <div className="upload-item-status">
         <i className={`iconfont ${
           ifile.status === FILE_STATUS.PREPARE ? "icon-tianjia" :
           ifile.status ===FILE_STATUS.UPLOADING? "icon-uploading":
           ifile.status === FILE_STATUS.UPLOADED ? "icon-Success" :"icon-error1"
         }`}></i>
+      </div>
+      <div className="upload-item-action">
+        <span className="del" onClick={del}>
+          <i className="iconfont icon-shanchu1"></i>
+        </span>
       </div>
     </div>
   );
