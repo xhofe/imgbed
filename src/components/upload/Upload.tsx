@@ -85,10 +85,12 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
         ></input>
       </div>
       <div className="upload-actions">
-        <i
-          className="iconfont icon-shanchu1"
-          onClick={() => dispatch({ type: ACTION_TYPE.CLEAR, payload: null })}
-        ></i>
+        {state.length > 0 && (
+          <i
+            className="iconfont icon-shanchu1"
+            onClick={() => dispatch({ type: ACTION_TYPE.CLEAR, payload: null })}
+          ></i>
+        )}
       </div>
       <div
         className={["upload-show", drag ? "upload-show-drag" : ""].join(" ")}

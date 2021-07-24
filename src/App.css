@@ -42,10 +42,11 @@
   left: -300px;
   width: 300px;
   bottom: 0;
-  height: calc(100vh - 52px);
+  height: calc(100% - 52px);
   background-color: var(--bgColor);
   transition:left 0.4s;
   overflow: auto;
+  box-shadow: 1px 0 6px 3px rgb(32 33 36 / 28%);
 }
 
 .aside-folder{

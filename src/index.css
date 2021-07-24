@@ -16,6 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   transition: 0.5s;
+  /* height: 100%; */
 }
 
 a {

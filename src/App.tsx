@@ -35,7 +35,7 @@ function App() {
               }`}
             ></i>
           </div>
-          <h2>图片上传</h2>
+          <h2>图片上传{apiState.cur&&apiState.cur.name&&(<span>({apiState.cur.name})</span>)}</h2>
           <div className="header-icons header-right-icons">
             <a
               href="https://github.com/Xhofe"
