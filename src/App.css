@@ -6,6 +6,8 @@
   --ftColor: black;
   --ft2Color: gray;
   --headerHeight:52px;
+  --asideWidth:300px;
+  --asideLeft:-300px;
 }
 
 .App-header {
@@ -39,8 +41,8 @@
 .App-aside{
   z-index: 244;
   position: fixed;
-  left: -300px;
-  width: 300px;
+  left: var(--asideLeft);
+  width: var(--asideWidth);
   bottom: 0;
   height: calc(100% - 52px);
   background-color: var(--bgColor);
@@ -61,7 +63,7 @@
 
 @media only screen and (min-width: 501px) {
   .container-folder{
-    margin-left: 300px;
+    margin-left: var(--asideWidth);
   }
 }
 

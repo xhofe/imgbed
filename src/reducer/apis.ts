@@ -90,7 +90,7 @@ export function apiInit(): APIState {
       const spai = apiModules[path].default as Array<ImgApi>;
       for (const item of spai) {
         apis.push(item);
-        if (curName && curName === api.name) {
+        if (curName && curName === item.name) {
           cur = item;
         }
       }

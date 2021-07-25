@@ -69,16 +69,16 @@
   --progress-height: 4px;
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 98%;
   text-align: start;
   height: var(--progress-height);
   background-color: lightcyan;
-  border-radius: var(--progress-height) / 2;
+  border-radius: var(--progress-height);
 }
 
 .upload-item-progress *{
   height: var(--progress-height);
   line-height: var(--progress-height);
   background-color: cyan;
-  border-radius: var(--progress-height) / 2;
+  border-radius: var(--progress-height);
 }

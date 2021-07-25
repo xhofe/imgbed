@@ -37,7 +37,7 @@ const Aside: React.FunctionComponent<IAsideProps> = (props) => {
     };
   };
   return (
-    <div>
+    <div className="aside">
       <div className="apis">
         {apiState.apis.map((api, index) => {
           return (

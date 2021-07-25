@@ -1,7 +1,7 @@
 import ImgApi from "../img_api";
 
 const api: ImgApi = {
-  name: '小波图床',
+  name: 'tuchuangs',
   transit: false,
   url: 'https://www.tuchuangs.com/upload/localhost',
   field_name: 'file',
