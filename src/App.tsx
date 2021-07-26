@@ -38,7 +38,7 @@ function App() {
           <h2>图片上传{apiState.cur&&apiState.cur.name&&(<span>({apiState.cur.name})</span>)}</h2>
           <div className="header-icons header-right-icons">
             <a
-              href="https://github.com/Xhofe"
+              href="https://github.com/Xhofe/imgbed"
               target="_blank"
               rel="noopener noreferrer"
             >

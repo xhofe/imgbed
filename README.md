@@ -1,6 +1,6 @@
 ## 图片上传
 
-一个React练手项目，可自定义添加接口。
+仅用于学习React，可自定义添加接口。
 接口：
 ```typescript
 interface ImgApi {

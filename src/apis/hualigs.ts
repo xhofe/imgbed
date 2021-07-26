@@ -1,5 +1,8 @@
 import ImgApi from "../img_api";
 
+// 注册 https://www.hualigs.cn/ 获取token
+const token = ''
+
 const kieng = [
   ["嘀哩", "bilibili"],
   // ["头条", "toutiao"],
@@ -30,7 +33,7 @@ const apis: Array<ImgApi> = kieng.map((item) => {
   return {
     name: `h-${item[0]}`,
     transit: false,
-    url: `https://www.hualigs.cn/api/upload?token=8ff730a4dc52360c26854111c794742b&apiType=${item[1]}`,
+    url: `https://www.hualigs.cn/api/upload?token=${token}&apiType=${item[1]}`,
     field_name: "image",
     resp_type: "json",
     url_field: ["data", "url", item[1]],
