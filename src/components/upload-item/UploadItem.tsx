@@ -16,6 +16,14 @@ const UploadItem: React.FunctionComponent<IUploadItemProps> = ({
   const imgRef = React.useRef<HTMLImageElement | null>(null);
   React.useEffect(() => {
     imgRef.current!.src = window.URL.createObjectURL(ifile.file);
+    return () => {
+      window.URL.revokeObjectURL(imgRef.current!.src);
+    };
+    // const reader = new FileReader();
+    // reader.onload = () => {
+    //   imgRef.current!.src = reader.result as string;
+    // }
+    // reader.readAsDataURL(ifile.file);
   }, []);
   return (
     <div
