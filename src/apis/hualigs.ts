@@ -1,7 +1,7 @@
 import ImgApi from "../img_api";
 
-// 注册 https://www.hualigs.cn/ 获取token
-const token = ''
+// 建议注册 https://www.hualigs.cn/ 获取自己的token
+const token = '8ff730a4dc52360c26854111c794742b'
 
 const kieng = [
   ["嘀哩", "bilibili"],
