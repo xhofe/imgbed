@@ -37,7 +37,8 @@
 }
 
 .url-show-input-container {
-  position: relative;
+  position     : relative;
+  border-radius: 4px;
 }
 
 .url-show-input-container-focus {
