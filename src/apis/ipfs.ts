@@ -12,7 +12,7 @@ const api: ImgApi = {
   max_size: 0,
   extensions: [],
   final_handler: (text: string): string => {
-    return `https://ipfs.decoo.io/ipfs/${text}`
+    return `https://cf-ipfs.com/ipfs/${text}` //ipfs.decoo.io/ipfs
   }
 }
 
