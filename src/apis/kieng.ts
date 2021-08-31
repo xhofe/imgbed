@@ -14,7 +14,7 @@ const kieng = [
 
 const apis: Array<ImgApi> = kieng.map((item) => {
   return {
-    name: `k-${item[0]}`,
+    name: `${item[0]}(K)`,
     transit: false,
     url: `https://image.kieng.cn/upload.html?type=${item[1]}`,
     field_name: "image",

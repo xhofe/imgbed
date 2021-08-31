@@ -31,7 +31,7 @@ const kieng = [
 
 const apis: Array<ImgApi> = kieng.map((item) => {
   return {
-    name: `h-${item[0]}`,
+    name: `${item[0]}(H)`,
     transit: false,
     url: `https://www.hualigs.cn/api/upload?token=${token}&apiType=${item[1]}`,
     field_name: "image",
