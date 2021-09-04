@@ -28,7 +28,7 @@ const Aside: React.FunctionComponent<IAsideProps> = (props) => {
       }
     } catch (e) {
       console.log("error", e);
-      createMessage()(e.toString(), MessageType.Error);
+      createMessage()((e as Error).toString(), MessageType.Error);
     }
   };
   const delApi = (api: ImgApi) => {

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import sha1 from "sha1-file-web";
 import { AppContext } from "../../App";
 import { ACTION_TYPE, FILE_STATUS } from "../../reducer/files";
@@ -11,8 +12,12 @@ interface IUploadProps {}
 
 const Upload: React.FunctionComponent<IUploadProps> = (props) => {
   const { state, dispatch, apiState } = React.useContext(AppContext);
-  const clickUpload = (event: React.MouseEvent<HTMLInputElement>) => {
+  const clickUpload = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
+    const target = event.target as HTMLElement;
+    if (target.tagName == "SPAN") {
+      return;
+    }
     if (!apiState.cur) {
       createMessage()("请先选择一个接口", MessageType.Warning);
       return;
@@ -43,7 +48,7 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
     }
   };
 
-  const progress = (hash:string) => {
+  const progress = (hash: string) => {
     return (percentage: number) => {
       // dispatch({
       //   type: ACTION_TYPE.PROGRESS,
@@ -51,34 +56,34 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
       // });
       dispatch({
         type: ACTION_TYPE.EDIT,
-        payload:{hash, progress:percentage}
-      })
-    }
-  }
+        payload: { hash, progress: percentage },
+      });
+    };
+  };
 
   const addOneFile = (file: File, hash: string) => {
     if (apiState.cur) {
       dispatch({
-        type:ACTION_TYPE.EDIT,
-        payload:{hash,status:FILE_STATUS.UPLOADING}
-      })
-      upload(apiState.cur, file,progress(hash)).then(res => {
+        type: ACTION_TYPE.EDIT,
+        payload: { hash, status: FILE_STATUS.UPLOADING },
+      });
+      upload(apiState.cur, file, progress(hash)).then((res) => {
         if (!res.img_url || res.err_msg) {
           createMessage()(res.err_msg, MessageType.Error);
           dispatch({
-            type:ACTION_TYPE.EDIT,
-            payload:{hash,status:FILE_STATUS.FAILED}
-          })
+            type: ACTION_TYPE.EDIT,
+            payload: { hash, status: FILE_STATUS.FAILED },
+          });
           return;
-        }else{
+        } else {
           dispatch({
             type: ACTION_TYPE.EDIT,
-            payload: { hash, url: res.img_url, status:FILE_STATUS.UPLOADED },
+            payload: { hash, url: res.img_url, status: FILE_STATUS.UPLOADED },
           });
         }
-      })
+      });
     }
-  }
+  };
 
   const pasteListener = (event: ClipboardEvent) => {
     const files = event.clipboardData!.files;
@@ -120,6 +125,11 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
       });
     };
   };
+
+  const [urlInputShow, setUrlInputShow] = useState(false);
+  // const [imgUrl, setImgUrl] = useState("");
+  const [imgUrls, setImgUrls] = useState("");
+  const [fetching,setFetching] = useState(false)
 
   return (
     <div className="upload">
@@ -168,7 +178,88 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
         ))}
         <div className="upload-btn" onClick={clickUpload}>
           <i className="iconfont icon-tianjia"></i>
-          <span>粘贴/拖拽或点击上传</span>
+          <span>
+            粘贴/拖拽/点击或
+            <span
+              style={{ color: "#409EFF" }}
+              onClick={() => {
+                setUrlInputShow(true);
+              }}
+            >
+              通过URL上传
+            </span>
+          </span>
+        </div>
+        <div
+          className="url-input-container"
+          style={{
+            visibility: urlInputShow ? "visible" : "hidden",
+            opacity: urlInputShow ? 1 : 0,
+          }}
+        >
+          <div className="url-input-box">
+            <div className="url-input-box-title">从URL上传(需支持跨域)</div>
+            <div className="url-input-box-content">
+              <div className="url-input-box-input">
+                {/* <input
+                  type="text"
+                  value={imgUrl}
+                  onChange={(e) => setImgUrl(e.target.value)}
+                  className="url-show-input"
+                /> */}
+                <textarea
+                  value={imgUrls}
+                  onChange={(e) => {
+                    setImgUrls(e.target.value);
+                  }}
+                  placeholder="图片URL,每行一个"
+                />
+              </div>
+            </div>
+            <div className="url-input-box-footer">
+              <button
+                className="btn btn-error"
+                onClick={() => {
+                  setUrlInputShow(false);
+                  setFetching(false)
+                }}
+              >
+                关闭
+              </button>
+              <button 
+                className="btn"
+                disabled={fetching}
+                onClick={async ()=>{
+                  if(!imgUrls){
+                    createMessage()('输入图片地址',MessageType.Warning)
+                    return
+                  }
+                  setFetching(true)
+                  for(const imgUrl of imgUrls.split('\n')){
+                    if(!imgUrl)continue
+                    fetch(imgUrl).then(resp=>resp.blob().then(res=>{
+                      const file = new File([res],'upload.png',{type: res.type})
+                      hanldAddFiles([file])
+                    })).catch(e=>{
+                      createMessage()(`${imgUrl}: ${(e as Error).toString()}`,MessageType.Error)
+                    })
+                  }
+                  // try {
+                  //   const resp = await fetch(imgUrl)
+                  //   const res = await resp.blob()
+                  //   const file = new File([res],'upload.png',{type: res.type})
+                  //   hanldAddFiles([file])
+                  //   setUrlInputShow(false)
+                  //   setImgUrl("")
+                  // }catch(e){
+                  //   createMessage()((e as Error).toString(),MessageType.Error)
+                  // }finally{
+                  //   setFetching(false)
+                  // }
+                }}
+              >{fetching?'获取图片中':'确定'}</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
