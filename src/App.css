@@ -55,13 +55,13 @@
   left: 0;
 }
 
-@media only screen and (max-width: 623px) {
+@media only screen and (max-width: 680px) {
   .container-folder{
     filter: blur(5px);
   }
 }
 
-@media only screen and (min-width: 624px) {
+@media only screen and (min-width: 681px) {
   .container-folder{
     margin-left: var(--asideWidth);
   }

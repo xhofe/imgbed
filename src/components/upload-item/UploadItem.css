@@ -56,14 +56,15 @@
 
 .upload-item-info {
   font-size    : 14px;
-  height       : 10%;
+  height       : 17%;
   width        : 80%;
   overflow     : hidden;
-  color        : #777;
+  color        : rgb(84, 84, 84);
   position     : absolute;
   bottom       : 0;
   white-space  : nowrap;
   text-overflow: ellipsis;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .upload-item-progress {
