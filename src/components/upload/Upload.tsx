@@ -179,7 +179,7 @@ const Upload: React.FunctionComponent<IUploadProps> = (props) => {
         <div className="upload-btn" onClick={clickUpload}>
           <i className="iconfont icon-tianjia"></i>
           <span>
-            粘贴/拖拽/点击或
+            粘贴/拖拽/点击或<br />
             <span
               style={{ color: "#409EFF" }}
               onClick={() => {
