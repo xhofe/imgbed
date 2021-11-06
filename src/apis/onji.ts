@@ -25,7 +25,7 @@ const apis: Array<ImgApi> = kieng.map((item) => {
   return {
     name: `${item[0]}(O)`,
     transit: false,
-    url: `https://pic.onji.cn/api/${item[1]}.php`,
+    url: `https://pic.onji.cn/apis/${item[1]}.php`,
     field_name: "image",
     resp_type: "json",
     url_field: ["data", "url"],
