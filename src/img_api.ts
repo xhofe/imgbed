@@ -17,6 +17,7 @@ interface ImgApi {
   extensions: string[];
   final_handler?: (text: string) => string;
   local?: boolean;
+  transit_api?: string;
 }
 
 export default ImgApi
