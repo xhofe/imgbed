@@ -25,7 +25,7 @@ const apis: Array<ImgApi> = kieng.map((item) => {
   return {
     name: `${item[0]}(O)`,
     transit: true,
-    url: `https://pic.ihcloud.net/api11/${item[1]}.php`,
+    url: `https://pic.ihcloud.net/api12/${item[1]}.php`,
     field_name: "image",
     resp_type: "json",
     url_field: ["data", "url"],
