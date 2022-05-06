@@ -3,7 +3,7 @@ import ImgApi from "../img_api";
 const api: ImgApi = {
   name: 'tuchuangs',
   transit: false,
-  url: 'https://www.tuchuangs.com/upload/localhost',
+  url: 'https://file.runrab.com/api/public/path',
   field_name: 'file',
   resp_type: 'json',
   url_field: ['url'],
