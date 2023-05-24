@@ -12,7 +12,7 @@ const api: ImgApi = {
   max_size: 0,
   extensions: [],
   final_handler: (text) => {
-    return `https://api.nn.ci/tgp${text}`
+    return `https://zoer.us${text}`
   }
 }
 
