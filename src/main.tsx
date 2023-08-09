@@ -1,12 +1,14 @@
+// main.tsx or main.jsx
 import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
+import ReactDOM from 'react-dom/client'
+import {NextUIProvider} from '@nextui-org/react'
 import App from './App'
+import './index.css'
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
-    {/* <a target="_blank" href="https://github.com/Xhofe">Github</a> */}
+    <NextUIProvider>
+      <App />
+    </NextUIProvider>
   </React.StrictMode>,
-  document.getElementById('root')
 )

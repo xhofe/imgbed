@@ -1,42 +1,27 @@
-## 图片上传
+# React + TypeScript + Vite
 
-仅用于学习React，可自定义添加接口。
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/Xhofe/imgbed)
+Currently, two official plugins are available:
 
-接口：
-```typescript
-interface ImgApi {
-  name: string; //接口名称需要唯一
-  transit: boolean; //是否需要中转(更改referrer,跨域)
-  url: string; //接口地址
-  field_name: string; //文件字段名称
-  headers?: Data; // 请求头
-  additional_data?: Data; //附加数据
-  resp_type: 'text' | 'json'; //响应类型
-  url_field: (string | number)[]; //url字段
-  code_field: string[]; //状态码字段
-  success_code: string | number; //成功状态码
-  max_size: number; //最大文件大小
-  extensions: string[]; //文件后缀
-  final_handler?: (text: string) => string; //最终处理函数
-}
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
 ```
-示例：
-```typescript
-{
-  name: 'upload.cc',
-  transit: true,
-  url: 'https://upload.cc/image_upload',
-  field_name: 'uploaded_file[]',
-  resp_type: 'json',
-  url_field: ['success_image', 0, 'url'],
-  code_field: ['code'],
-  success_code: 100,
-  max_size: 0,
-  extensions: [],
-  final_handler: (text) => {
-    return `https://upload.cc/${text}`
-  }
-}
-```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
