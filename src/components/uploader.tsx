@@ -18,10 +18,10 @@ function Item(props: { f: TFile }) {
   return (
     <div
       className={clsx(
-        'relative h-36 w-36 overflow-hidden rounded-xl border-2 border-slate-500/30 p-[0.5px]',
         {
-          'border-primary-500/60': props.f.focus,
+          '!border-primary-500/60': props.f.focus,
         },
+        'relative h-36 w-36 overflow-hidden rounded-xl border-2 border-slate-500/30 p-[0.5px]',
       )}
       onMouseOver={() => {
         useFileStore.getState().focus(props.f.id)
