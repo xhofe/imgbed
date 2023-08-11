@@ -1,15 +1,7 @@
 import { Copy, Remove } from '@/icons'
 import { TFile, useFileStore } from '@/store/file'
 import { copyToClip } from '@/utils/copy'
-import {
-  Button,
-  Card,
-  CardBody,
-  Code,
-  Snippet,
-  Tab,
-  Tabs,
-} from '@nextui-org/react'
+import { Button, Card, CardBody, Code, Tab, Tabs } from '@nextui-org/react'
 import clsx from 'clsx'
 import { ComponentProps } from 'react'
 import { toast } from 'react-hot-toast'
@@ -116,13 +108,46 @@ export function Results() {
   return (
     <Card>
       <CardBody>
-        <Tabs color="primary">
+        <Tabs
+          color="primary"
+          classNames={{
+            panel: 'pb-0',
+          }}
+        >
           {Object.values(UrlShowType).map((type) => (
-            <Tab key={type} title={type}>
+            <Tab key={type} title={type} className="flex flex-col gap-2">
               <div className="flex flex-col gap-1">
                 {files.map((f) => (
                   <Result key={f.id} f={f} type={type} />
                 ))}
+              </div>
+              <div className="flex justify-end gap-2">
+                <Button
+                  isIconOnly
+                  color="danger"
+                  variant="shadow"
+                  onPress={() => {
+                    useFileStore.getState().clear()
+                  }}
+                >
+                  <Remove fontSize={24} />
+                </Button>
+                <Button
+                  isIconOnly
+                  color="primary"
+                  variant="shadow"
+                  onPress={() => {
+                    copyToClip(
+                      files
+                        .filter((f) => f.status === 'uploaded')
+                        .map((f) => getUrlShow(f, type))
+                        .join('\n'),
+                    )
+                    toast.success('复制成功')
+                  }}
+                >
+                  <Copy fontSize={24} />
+                </Button>
               </div>
             </Tab>
           ))}

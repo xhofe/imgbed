@@ -20,6 +20,7 @@ function Item(props: { f: TFile }) {
       className={clsx(
         {
           '!border-primary-500/60': props.f.focus,
+          '!border-danger-500/60': props.f.status === 'error',
         },
         'relative h-36 w-36 overflow-hidden rounded-xl border-2 border-slate-500/30 p-[0.5px]',
       )}
