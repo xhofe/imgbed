@@ -1,4 +1,4 @@
-import { Copy, Remove } from '@/icons'
+import { Clear, Copy, Remove } from '@/icons'
 import { TFile, useFileStore } from '@/store/file'
 import { copyToClip } from '@/utils/copy'
 import {
@@ -145,7 +145,7 @@ export function Results() {
                     useFileStore.getState().clear()
                   }}
                 >
-                  <Remove fontSize={24} />
+                  <Clear fontSize={24} />
                 </Button>
                 <Button
                   isIconOnly
