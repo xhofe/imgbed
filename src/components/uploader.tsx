@@ -36,7 +36,7 @@ function Item(props: { f: TFile }) {
         size="sm"
         aria-label="Uploading..."
         value={props.f.progress}
-        className="absolute bottom-0"
+        className="absolute bottom-0 opacity-70"
       />
     </div>
   )

@@ -1,7 +1,15 @@
 import { Copy, Remove } from '@/icons'
 import { TFile, useFileStore } from '@/store/file'
 import { copyToClip } from '@/utils/copy'
-import { Button, Card, CardBody, Code, Tab, Tabs } from '@nextui-org/react'
+import {
+  Button,
+  Card,
+  CardBody,
+  Code,
+  Progress,
+  Tab,
+  Tabs,
+} from '@nextui-org/react'
 import clsx from 'clsx'
 import { ComponentProps } from 'react'
 import { toast } from 'react-hot-toast'
@@ -65,7 +73,7 @@ function Result(props: { f: TFile; type: UrlShowType }) {
         {
           '!border-primary-500/60': props.f.focus,
         },
-        'flex items-center justify-between gap-1 rounded-lg border-1 border-slate-500/30 p-1',
+        'relative flex items-center justify-between gap-1 overflow-hidden rounded-lg border-1 border-slate-500/30 p-1',
       )}
     >
       <Code
@@ -100,6 +108,13 @@ function Result(props: { f: TFile; type: UrlShowType }) {
           <Copy fontSize={20} />
         </Button>
       </div>
+      {f.progress !== 100 && (
+        <Progress
+          className="absolute bottom-0 left-0 opacity-70"
+          size="sm"
+          value={f.progress}
+        />
+      )}
     </div>
   )
 }

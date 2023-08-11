@@ -92,6 +92,7 @@ export const upload = async (
         }
       })
       xhr.addEventListener('load', () => {
+        progress(100)
         let res = ''
         switch (api.resp_type) {
           case 'json': {
