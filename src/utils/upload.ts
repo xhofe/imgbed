@@ -23,8 +23,12 @@ export const generateFormData = (api: Api, file: File): FormData => {
   let data = new FormData()
   data.append(api.field_name, file)
   if (api.additional_data) {
-    for (const key in api.additional_data) {
-      data.append(key, api.additional_data[key])
+    let additional_data = api.additional_data
+    if (typeof additional_data === 'function') {
+      additional_data = additional_data(file)
+    }
+    for (const key in additional_data) {
+      data.append(key, (additional_data as any)[key])
     }
   }
   return data

@@ -11,10 +11,10 @@ for (const path in apiModules) {
   const api = apiModules[path]
   if (api instanceof Array) {
     for (const item of api) {
-      apis.push(item)
+      !item.disabled && apis.push(item)
     }
   } else {
-    apis.push(api)
+    !api.disabled && apis.push(api)
   }
 }
 
@@ -38,3 +38,7 @@ export const useApiStore = create(
     },
   ),
 )
+
+if (!useApiStore.getState().getApi()) {
+  useApiStore.getState().setCurrent(apis[0].name)
+}

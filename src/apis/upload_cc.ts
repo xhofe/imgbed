@@ -1,7 +1,7 @@
 import { Api } from '@/types'
 
 const api: Api = {
-  name: 'upload.cc',
+  name: 'Upload.cc',
   transit: true,
   url: 'https://upload.cc/image_upload',
   field_name: 'uploaded_file[]',
