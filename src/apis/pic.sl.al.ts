@@ -14,7 +14,7 @@ const api: Api = {
   success_code: true,
   max_size: 0,
   extensions: [],
-  disabled: true
+  disabled: true,
 }
 
 export default api

@@ -5,7 +5,7 @@ import { Uploader } from './components/uploader'
 
 function App() {
   return (
-    <div className="container mx-auto px-2 space-y-3">
+    <div className="container mx-auto space-y-3 px-2">
       <Header />
       <ApiSelect />
       <Uploader />

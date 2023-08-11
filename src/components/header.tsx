@@ -14,7 +14,7 @@ export function Header() {
     }
   }, [theme])
   return (
-    <div className="relative z-40 mx-auto py-4 flex max-w-[1280px] flex-row flex-nowrap items-center justify-between px-6">
+    <div className="relative z-40 mx-auto flex max-w-[1280px] flex-row flex-nowrap items-center justify-between px-6 py-4">
       <h1 className="text-2xl font-bold">图片上传</h1>
       <Switch
         defaultSelected
