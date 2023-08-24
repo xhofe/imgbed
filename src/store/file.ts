@@ -45,20 +45,19 @@ export const useFileStore = create<{
         ...get().files.find((f) => f.id === id)!,
         status: 'uploading',
       })
-      upload(useApiStore.getState().getApi(), file, (p) => {
+      const res = await upload(useApiStore.getState().getApi(), file, (p) => {
         get().edit({
           ...get().files.find((f) => f.id === id)!,
           progress: p,
         })
-      }).then((res) => {
-        get().edit({
-          ...get().files.find((f) => f.id === id)!,
-          url: res.url,
-          status: res.err ? 'error' : 'uploaded',
-          err: res.err,
-        })
-        res.err && toast.error(res.err)
       })
+      get().edit({
+        ...get().files.find((f) => f.id === id)!,
+        url: res.url,
+        status: res.err ? 'error' : 'uploaded',
+        err: res.err,
+      })
+      res.err && toast.error(res.err)
     })
   },
   del(id) {
