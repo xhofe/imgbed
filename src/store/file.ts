@@ -19,6 +19,7 @@ const pool = createAsyncPool(5)
 export const useFileStore = create<{
   files: TFile[]
   add: (file: File) => void
+  retry: (id: string) => void
   del: (id: string) => void
   clear: () => void
   edit: (f: TFile) => void
@@ -51,6 +52,39 @@ export const useFileStore = create<{
           progress: p,
         })
       })
+      get().edit({
+        ...get().files.find((f) => f.id === id)!,
+        url: res.url,
+        status: res.err ? 'error' : 'uploaded',
+        err: res.err,
+      })
+      res.err && toast.error(res.err)
+    })
+  },
+  retry(id) {
+    const file = get().files.find((f) => f.id === id)
+    if (!file) {
+      return
+    }
+    get().edit({
+      ...file,
+      status: 'prepare',
+    })
+    pool(async () => {
+      get().edit({
+        ...get().files.find((f) => f.id === id)!,
+        status: 'uploading',
+      })
+      const res = await upload(
+        useApiStore.getState().getApi(),
+        file.file,
+        (p) => {
+          get().edit({
+            ...get().files.find((f) => f.id === id)!,
+            progress: p,
+          })
+        },
+      )
       get().edit({
         ...get().files.find((f) => f.id === id)!,
         url: res.url,

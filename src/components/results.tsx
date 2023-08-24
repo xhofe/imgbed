@@ -1,4 +1,4 @@
-import { Clear, Copy, Remove } from '@/icons'
+import { Clear, Copy, Remove, Retry } from '@/icons'
 import { TFile, useFileStore } from '@/store/file'
 import { copyToClip } from '@/utils/copy'
 import {
@@ -84,29 +84,46 @@ function Result(props: { f: TFile; type: UrlShowType }) {
         {text}
       </Code>
       <div className="flex items-center gap-1">
-        <Button
-          isIconOnly
-          color="danger"
-          variant="flat"
-          onPress={() => {
-            useFileStore.getState().del(f.id)
-          }}
-          size="sm"
-        >
-          <Remove fontSize={20} />
-        </Button>
-        <Button
-          isIconOnly
-          color="primary"
-          variant="flat"
-          onPress={() => {
-            copyToClip(text)
-            toast.success('复制成功')
-          }}
-          size="sm"
-        >
-          <Copy fontSize={20} />
-        </Button>
+        {f.status !== 'uploading' && (
+          <Button
+            isIconOnly
+            color="danger"
+            variant="flat"
+            onPress={() => {
+              useFileStore.getState().del(f.id)
+            }}
+            size="sm"
+          >
+            <Remove fontSize={20} />
+          </Button>
+        )}
+        {f.status === 'uploaded' && (
+          <Button
+            isIconOnly
+            color="primary"
+            variant="flat"
+            onPress={() => {
+              copyToClip(text)
+              toast.success('复制成功')
+            }}
+            size="sm"
+          >
+            <Copy fontSize={20} />
+          </Button>
+        )}
+        {f.status === 'error' && (
+          <Button
+            isIconOnly
+            color="secondary"
+            variant="flat"
+            onPress={() => {
+              useFileStore.getState().retry(f.id)
+            }}
+            size="sm"
+          >
+            <Retry fontSize={20} />
+          </Button>
+        )}
       </div>
       {f.progress !== 100 && (
         <Progress
@@ -146,6 +163,20 @@ export function Results() {
                   }}
                 >
                   <Clear fontSize={24} />
+                </Button>
+                <Button
+                  isIconOnly
+                  color="secondary"
+                  variant="shadow"
+                  onPress={() => {
+                    files.forEach((f) => {
+                      if (f.status === 'error') {
+                        useFileStore.getState().retry(f.id)
+                      }
+                    })
+                  }}
+                >
+                  <Retry fontSize={24} />
                 </Button>
                 <Button
                   isIconOnly
