@@ -4,7 +4,7 @@ interface Data {
 
 export interface Api {
   name: string
-  transit: boolean
+  transit?: boolean
   url: string
   field_name: string
   headers?: Data
