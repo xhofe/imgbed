@@ -2,7 +2,7 @@ import { Api } from '@/types'
 
 const api: Api = {
   name: 'FreeBuf',
-  // transit: true,
+  transit: true,
   url: 'https://www.freebuf.com/fapi/frontend/upload/image',
   field_name: 'file',
   resp_type: 'json',
