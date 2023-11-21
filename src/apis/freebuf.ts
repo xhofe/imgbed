@@ -15,6 +15,7 @@ const api: Api = {
     let i = text.lastIndexOf('!')
     return text.substring(0, i)
   },
+  disabled: true,
 }
 
 export default api

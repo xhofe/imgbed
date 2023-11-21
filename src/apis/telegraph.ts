@@ -12,7 +12,7 @@ const api: Api = {
   max_size: 0,
   extensions: [],
   final_handler: (text) => {
-    return `https://zoer.us${text}`
+    return `https://proxy.nn.ci/tgp${text}`
   },
 }
 
